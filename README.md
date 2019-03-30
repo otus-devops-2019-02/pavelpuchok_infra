@@ -37,7 +37,7 @@ someinternalhost_IP = 10.132.0.5
 
 # Cloud Test App
 testapp_IP = 35.205.250.223
-testapp_PORT = 9292
+testapp_port = 9292
 
 ## Запуск VM вместе со startup script:
 ```
