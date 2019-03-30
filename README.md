@@ -34,3 +34,22 @@ someinternalhost_IP = 10.132.0.5
     * someinternalhost: `ssh someinternalhost` или `someinternalhost`
     * bastion: `ssh bastion` или `bastion`
 
+
+# Cloud Test App
+testapp_IP = 35.205.250.223
+testapp_PORT = 9292
+
+## Запуск VM вместе со startup script:
+```
+gcloud compute instances create reddit-app \
+  --boot-disk-size=10GB \
+  --image-family ubuntu-1604-lts \
+  --image-project=ubuntu-os-cloud \
+  --machine-type=g1-small \
+  --tags puma-server \
+  --restart-on-failure \
+  --metadata-from-file startup-script=startup_script.sh
+  ```
+## Создание firewall-rule через gcloud:
+```gcloud compute firewall-rules create default-puma-server --allow tcp:9292```
+
