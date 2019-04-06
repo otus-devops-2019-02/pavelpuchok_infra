@@ -53,3 +53,12 @@ gcloud compute instances create reddit-app \
 ## Создание firewall-rule через gcloud:
 ```gcloud compute firewall-rules create default-puma-server --allow tcp:9292```
 
+
+# Packer
+
+`packer/ubuntu16.json` - параметризированный Ubuntu 16.04 образ VM, содержащий MongoDB и Ruby. Возможные параметризации описаны в `packer/variables.json.example`
+`packer/immutable.json` - образ VM основанный на reddit-base image-family (`packer/ubuntu16.json`). В образ "запечены" reddit-app, его dependency, а так же systemd unit файл (`packer/files/redditapp.service`)
+
+Запуск приложения происходит через запуск юнит systemd - `service redditapp start`
+
+`config-scripts/create-reddit-vm.sh` - создает инстанс immutable образа, и firewall правило для открытия доступа к созданному инстансу
