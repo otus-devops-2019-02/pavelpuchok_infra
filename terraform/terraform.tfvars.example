@@ -2,3 +2,8 @@ project = "your-prj-id"
 public_key_path = "path/to/your/key.pub"
 private_key_path = "path/to/your/key"
 disk_image = "reddit-base"
+users = [
+    "appuser0",
+    "appuser1",
+    "appuser2"
+]

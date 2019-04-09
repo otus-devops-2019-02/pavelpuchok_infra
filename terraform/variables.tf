@@ -18,3 +18,8 @@ variable private_key_path {
 variable disk_image {
   description = "Disk image"
 }
+
+variable users {
+  description = "List of users to add ssh-keys"
+  type        = "list"
+}
