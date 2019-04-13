@@ -24,7 +24,9 @@ resource "google_compute_instance" "app" {
   network_interface {
     network = "default"
 
-    access_config {}
+    access_config {
+      nat_ip = "${google_compute_address.app_ip.address}"
+    }
   }
 
   connection {
@@ -64,4 +66,20 @@ resource "google_compute_project_metadata_item" "appusers" {
 
   # combine `users` variable with `public_key_path` and replace default user from that key with user from `users` list
   value = "${join("\n", formatlist("%s:%s%s", var.users, replace(file(var.public_key_path), "appuser\n", ""), var.users))}"
+}
+
+resource "google_compute_firewall" "firewall_ssh" {
+  name    = "default-allow-ssh"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+}
+
+resource "google_compute_address" "app_ip" {
+  name = "reddit-app-ip"
 }
