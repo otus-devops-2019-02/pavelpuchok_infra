@@ -23,3 +23,8 @@ variable users {
   description = "List of users to add ssh-keys"
   type        = "list"
 }
+
+variable app_count {
+  description = "Reddit app instances count"
+  default     = "1"
+}

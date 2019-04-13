@@ -2,9 +2,7 @@ resource "google_compute_instance_group" "appgroup" {
   name = "reddit-app-group"
   zone = "europe-west1-b"
 
-  instances = [
-    "${google_compute_instance.app.self_link}",
-  ]
+  instances = ["${google_compute_instance.app.*.self_link}"]
 
   named_port {
     name = "http"
