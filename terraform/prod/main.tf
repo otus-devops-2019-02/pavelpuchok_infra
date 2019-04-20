@@ -25,10 +25,3 @@ module "vpc" {
   source        = "../modules/vpc"
   source_ranges = ["46.53.241.92/32"]
 }
-
-resource "google_compute_project_metadata_item" "appusers" {
-  key = "ssh-keys"
-
-  # combine `users` variable with `public_key_path` and replace default user from that key with user from `users` list
-  value = "${join("\n", formatlist("%s:%s%s", var.users, replace(file(var.public_key_path), "appuser\n", ""), var.users))}"
-}
