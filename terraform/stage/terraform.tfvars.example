@@ -1,0 +1,3 @@
+project = "gcp-project-id"
+
+public_key_path = "~/.ssh/appuser.pub"
