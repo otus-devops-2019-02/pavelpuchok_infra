@@ -8,8 +8,8 @@ module "storage-bucket" {
   source  = "SweetOps/storage-bucket/google"
   version = "0.1.1"
 
-  # Имена поменяйте на другие
-  name = ["my-custom-storage-1", "my-custom-storage-2"]
+  name          = ["pp_tf_state_stage", "pp_tf_state_prod"]
+  force_destroy = "true"
 }
 
 output storage-bucket_url {
