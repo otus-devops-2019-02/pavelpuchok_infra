@@ -8,6 +8,24 @@ provider "google" {
   region  = "${var.region}"
 }
 
+module "app" {
+  source         = "modules/app"
+  zone           = "${var.zone}"
+  app_disk_image = "${var.app_disk_image}"
+  app_count      = "${var.app_count}"
+}
+
+module "db" {
+  source        = "modules/db"
+  zone          = "${var.zone}"
+  db_disk_image = "${var.db_disk_image}"
+}
+
+module "vpc" {
+  source        = "modules/vpc"
+  source_ranges = ["0.0.0.0/0"]
+}
+
 resource "google_compute_project_metadata_item" "appusers" {
   key = "ssh-keys"
 

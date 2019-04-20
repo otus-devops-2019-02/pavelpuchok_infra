@@ -1,3 +1,7 @@
+data "google_compute_image" "db_image" {
+  family = "${var.db_disk_image}"
+}
+
 resource "google_compute_instance" "db" {
   name         = "reddit-db"
   machine_type = "f1-micro"
@@ -6,7 +10,7 @@ resource "google_compute_instance" "db" {
 
   boot_disk {
     initialize_params {
-      image = "${var.db_disk_image}"
+      image = "${data.google_compute_image.db_image.self_link}"
     }
   }
 
