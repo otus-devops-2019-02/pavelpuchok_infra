@@ -1,0 +1,17 @@
+---
+# tasks file for app
+  - name: Configuring Puma`s environment variables
+    template:
+      src: db_config.j2
+      dest: /home/appuser/db_config
+
+  - name: Copying Puma`s unit file
+    notify: reload puma
+    copy:
+      src: puma.service
+      dest: /etc/systemd/system/puma.service
+      owner: appuser
+      group: appuser
+
+  - name: Enable Puma
+    service: name=puma enabled=yes
