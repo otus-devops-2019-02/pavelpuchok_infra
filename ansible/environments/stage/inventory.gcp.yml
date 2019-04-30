@@ -1,0 +1,11 @@
+plugin: gcp_compute
+projects:
+    - project-id
+filters:
+zones:
+    - "europe-west1-b"
+groups:
+    db: "'db' in name"
+    app: "'app' in name"
+service_account_file: ../../service_account.json
+auth_kind: serviceaccount

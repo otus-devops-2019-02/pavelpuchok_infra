@@ -3,8 +3,5 @@
     hosts: app
     become: yes
 
-    vars:
-      db_host: 10.132.15.225
-
     roles:
       - app
