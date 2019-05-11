@@ -13,3 +13,4 @@ variables.json
 #ansible
 *.retry
 jdauphant.nginx
+vault.key
