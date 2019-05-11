@@ -4,6 +4,7 @@
     debug:
       msg: "This host is in {{ env }} environment!!!"
   - name: Configuring Puma`s environment variables
+    notify: reload puma
     template:
       src: db_config.j2
       dest: /home/appuser/db_config
