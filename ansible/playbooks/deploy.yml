@@ -1,6 +1,8 @@
 ---
   - name: Deploy app
     hosts: app
+    vars: 
+      deploy_user: appuser
     tasks:
      - name: Fetch latest app code
        git:
