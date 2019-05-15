@@ -1,19 +1,19 @@
 ---
   - name: Deploy app
     hosts: app
-    vars: 
+    vars:
       deploy_user: appuser
     tasks:
      - name: Fetch latest app code
        git:
-        repo: 'https://github.com/express42/reddit.git'
-        dest: '/home/{{ deploy_user }}/reddit'
-        version: monolith
+         repo: 'https://github.com/express42/reddit.git'
+         dest: '/home/{{ deploy_user }}/reddit'
+         version: monolith
        notify: restart puma
      - name: Install dependencies
        bundler:
-        state: present
-        chdir: /home/{{ deploy_user }}/reddit
+         state: present
+         chdir: /home/{{ deploy_user }}/reddit
     handlers:
       - name: restart puma
         become: yes
