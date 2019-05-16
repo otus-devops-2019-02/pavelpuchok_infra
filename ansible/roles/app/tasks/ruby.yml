@@ -1,0 +1,10 @@
+---
+  - name: install ruby and bundler
+    apt:
+      name:
+        - ruby-full
+        - ruby-bundler
+        - build-essential
+      state: present
+      update_cache: yes
+    tags: ruby
